@@ -1,0 +1,6 @@
+Disclaimer: This is not an official Google product.
+=================================
+
+Project name: Coarse discourse annotations on forum threads.
+
+Objective: This open-source project provides the companion code for Reddit annotations data release. The data release contains discourse annotations on 10K Reddit forum threads, without the original thread content. The purpose of this code is to help users retrieve the original content using Reddit public API, and join it with the annotations data set.

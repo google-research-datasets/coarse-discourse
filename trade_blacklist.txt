@@ -1,0 +1,20 @@
+
+Regex rules:
+
+.*trade[^r].*
+.*swap\b
+.*market\b
+\brandomacts.*
+\brandom_acts.*
+
+
+Subreddits:
+
+friendsafari
+fireteams
+poketradereferences
+worldpowers
+ps3bf3
+uhcmatches
+hitsworthturkingfor
+pokemonplaza
