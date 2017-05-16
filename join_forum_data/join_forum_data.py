@@ -53,7 +53,7 @@ reddit = praw.Reddit(client_id='my client id',
                      client_secret='my client secret',
                      user_agent='my user agent')
 
-with open('coarse_discourse_dump.json') as jsonfile:
+with open('coarse_discourse_dataset.json') as jsonfile:
     lines = jsonfile.readlines()
     dump_with_reddit = open('coarse_discourse_dump_reddit.json', 'w')
     
