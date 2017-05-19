@@ -72,23 +72,27 @@ with open('coarse_discourse_dataset.json') as jsonfile:
         for post in reader['posts']:
             post_id_dict[post['id']] = post
         
-        full_submission_id = 't3_' + submission.id
-        if full_submission_id in post_id_dict:
-            post_id_dict[full_submission_id]['body'] = submission.selftext
+        try:
+            full_submission_id = 't3_' + submission.id
+            if full_submission_id in post_id_dict:
+                post_id_dict[full_submission_id]['body'] = submission.selftext
+                
+                # For a self-post, this URL will be the same URL as the thread.
+                # For a link-post, this URL will be the link that the link-post is linking to.
+                post_id_dict[full_submission_id]['url'] = submission.url
+                if submission.author:
+                    post_id_dict[full_submission_id]['author'] = submission.author.name
             
-            # For a self-post, this URL will be the same URL as the thread.
-            # For a link-post, this URL will be the link that the link-post is linking to.
-            post_id_dict[full_submission_id]['url'] = submission.url
-            if submission.author:
-                post_id_dict[full_submission_id]['author'] = submission.author.name
-        
-        submission.comments.replace_more(limit=0)
-        for comment in submission.comments.list():
-            full_comment_id = 't1_' + comment.id
-            if full_comment_id in post_id_dict:
-                post_id_dict[full_comment_id]['body'] = comment.body
-                if comment.author:
-                    post_id_dict[full_comment_id]['author'] = comment.author.name
+            submission.comments.replace_more(limit=0)
+            for comment in submission.comments.list():
+                full_comment_id = 't1_' + comment.id
+                if full_comment_id in post_id_dict:
+                    post_id_dict[full_comment_id]['body'] = comment.body
+                    if comment.author:
+                        post_id_dict[full_comment_id]['author'] = comment.author.name
+
+        except Exception as e:
+            print 'Error %s' % (e)
         
         found_count = 0
         for post in reader['posts']:
