@@ -16,6 +16,7 @@
 from __future__ import print_function
 
 import json
+import os
 import time
 
 import praw
@@ -51,9 +52,9 @@ and using that data instead of the Reddit API to collect the comment texts and a
 '''
 
 # Replace below with information provided to you by Reddit when registering your script
-reddit = praw.Reddit(client_id='my client id',
-                     client_secret='my client secret',
-                     user_agent='my user agent')
+reddit = praw.Reddit(client_id=os.environ["CLIENT_ID"],
+                     client_secret=os.environ["CLIENT_SECRET"],
+                     user_agent=os.environ["UA"])
 
 with open('coarse_discourse_dataset.json') as jsonfile:
     lines = jsonfile.readlines()
