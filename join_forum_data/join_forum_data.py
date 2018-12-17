@@ -99,7 +99,7 @@ with open('coarse_discourse_dataset.json') as jsonfile:
 
         found_count = 0
         for post in reader['posts']:
-            if not post.has_key('body'):
+            if not 'body' in post.keys():
                 print("Can't find %s in URL: %s" % (post['id'], reader['url']))
             else:
                 found_count += 1
